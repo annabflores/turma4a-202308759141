@@ -70,6 +70,25 @@ Utilizado pela instrução de parada (`HALT`).
 | **`HALT`** | `1110` | `1110 0000 0000 0000` | Encerra a execução do programa e mantém o estado das saídas. | 
 | *(Inválido)* | `1111` | `1111 xxxx xxxx xxxx` | Opcode reservado para detecção de instrução/palavra corrompida. | 
 
+| Mnemônico | Opcode (4 bits) | Formato dos 16 bits [15 ... 0] | Descrição Funcional |
+| :--- | :---: | :--- | :--- |
+| READ x | 0000 | `0000 0000 0000 00xx` | Lê o nível analógico do reservatório \(x\), converte para percentual inteiro, armazena em `NIVEL[x]` e `ACC` e marca leitura válida. |
+| ON x | 0001 | `0001 0000 0000 00xx` | Liga o LED representante da bomba \(x\). |
+| OFF x | 0010 | `0010 0000 0000 00xx` | Desliga o LED representante da bomba \(x\). |
+| ALARM x | 0011 | `0011 0000 0000 00xx` | Ativa estado de manutenção corretiva da bomba \(x\) e o buzzer. |
+| LED x | 0100 | `0100 0000 0000 00xx` | Liga o LED de manutenção preventiva da bomba \(x\). |
+| INFO x | 0101 | `0101 0000 0000 00xx` | Atualiza leitura da bomba \(x\), guarda em ACC/NIVEL[x] e exibe a faixa numérica no display. |
+| SILENCE x | 0110 | `0110 0000 0000 00xx` | Desativa alarme corretivo da bomba \(x\) (buzzer desliga se não houver outros alarmes ativos). |
+| LEDOFF x | 0111 | `0111 0000 0000 00xx` | Desliga o LED de manutenção preventiva da bomba \(x\). |
+| CMP x, n | 1000 | `1000 xx00 0nnnnnnn` | Compara NIVEL[x] com \(n\), guarda a diferença em ACC e atualiza os flags FLAG_L, FLAG_Z e FLAG_G. |
+| JMP a | 1001 | `1001 0000 0000aaaa` | Desvia incondicionalmente para o endereço \(a\) (0x00 a 0x7F). |
+| JL a | 1010 | `1010 0000 0000aaaa` | Desvia para o endereço \(a\) se FLAG_L for verdadeiro. |
+| JE a | 1011 | `1011 0000 0000aaaa` | Desvia para o endereço \(a\) se FLAG_Z for verdadeiro. |
+| JG a | 1100 | `1100 0000 0000aaaa` | Desvia para o endereço \(a\) se FLAG_G for verdadeiro. |
+| WAIT t | 1101 | `1101 0000 0ttttttt` | Aguarda \(t \times 100\text{ ms}\) sem bloquear comandos do monitor serial. |
+| HALT | 1110 | `1110 0000 0000 0000` | Encerra a execução do programa e mantém o estado das saídas. |
+| (Inválido) | 1111 | `1111 xxxx xxxx xxxx` | Opcode reservado para detecção de instrução/palavra corrompida. |
+
 --- 
 
 ## 4. Regras de Preenchimento e Validação 
