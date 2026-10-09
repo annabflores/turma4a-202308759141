@@ -34,7 +34,11 @@ Utilizado por instruções de salto (`JMP`, `JL`, `JE`, `JG`).
 * **Reservado `[11:7]` (5 bits):** Preenchido obrigatoriamente com zeros (`00000`).
 * **Endereço `a` `[6:0]` (7 bits):** Endereço de destino na memória (faixa de `0x00` a `0x7F`, ou seja, 0 a 127 em decimal).
 
-### Formato Tipo T (Temporização) Utilizado pela instrução de espera (\`WAIT t\`). \* \*\*Opcode \`[15:12]\` (4 bits):\*\* Código da instrução (\`1101\`). \* \*\*Reservado \`[11:7]\` (5 bits):\*\* Preenchido obrigatoriamente com zeros (\`00000\`). \* \*\*Tempo \`t\` \`[6:0]\` (7 bits):\*\* Tempo de espera em múltiplos de 100 ms (faixa de 0 a 127). 
+### Formato Tipo T (Temporização) 
+Utilizado pela instrução de espera (`WAIT t`). 
+* **Opcode `[15:12]` (4 bits):** Código da instrução (`1101`).
+* **Reservado `[11:7]` (5 bits):** Preenchido obrigatoriamente com zeros (`00000`).
+* **Tempo `t` `[6:0]` (7 bits):** Tempo de espera em múltiplos de 100 ms (faixa de 0 a 127). 
 
 ### Formato Tipo S (Sem Operandos) 
 Utilizado pela instrução de parada (`HALT`). 
